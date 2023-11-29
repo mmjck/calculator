@@ -12,7 +12,7 @@ class CalcController: UIViewController {
     let viewModel: CalcControllerViewModel
     
     
-    private lazy var  collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
@@ -24,7 +24,8 @@ class CalcController: UIViewController {
         
         collectionView.register(ButtonCell.self, forCellWithReuseIdentifier: ButtonCell.identifier)
         
-        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
@@ -33,16 +34,14 @@ class CalcController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .purple
-        setupUI()
+        
+        self.setupUI()
         
     }
     
-    init(viewModel: CalcControllerViewModel) {
+    init(viewModel: CalcControllerViewModel = CalcControllerViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-
-        
     }
     
     required init?(coder: NSCoder) {
@@ -51,8 +50,8 @@ class CalcController: UIViewController {
     
     
     private func setupUI(){
+        self.view.backgroundColor = .red
         self.view.addSubview(self.collectionView)
-        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -80,7 +79,9 @@ extension CalcController: UICollectionViewDataSource {
         cell.configure(with: button)
         return cell
     }
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     
     
@@ -88,6 +89,6 @@ extension CalcController: UICollectionViewDataSource {
 
 extension CalcController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/5, height: view.frame.width/5)
+        return CGSize(width: view.frame.width / 3, height: view.frame.width / 2)
     }
 }

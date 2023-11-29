@@ -22,10 +22,10 @@ class ButtonCell: UICollectionViewCell {
         return label
     }()
     
-    public func configure(with calculatorButton: CalculatorButton) {
-        self.calculatorButton = calculatorButton
-        self.titleLabel.text = calculatorButton.title
-        self.backgroundColor = calculatorButton.color
+    public func configure(with button: CalculatorButton) {
+        self.calculatorButton = button
+        self.titleLabel.text = button.title
+        self.backgroundColor = button.color
         
     }
     
