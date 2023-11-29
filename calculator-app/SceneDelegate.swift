@@ -18,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         
-        let viewController = ViewController()
+        let viewController = CalcController(viewModel: CalcControllerViewModel())
         window.rootViewController = viewController
+        window.makeKeyAndVisible()
+
         self.window = window
     }
 
