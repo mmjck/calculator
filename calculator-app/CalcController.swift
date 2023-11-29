@@ -23,7 +23,6 @@ class CalcController: UIViewController {
         collectionView.register(CalcHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CalcHeaderCell.identifier)
         
         collectionView.register(ButtonCell.self, forCellWithReuseIdentifier: ButtonCell.identifier)
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.delegate = self
@@ -36,6 +35,7 @@ class CalcController: UIViewController {
 
         
         self.setupUI()
+        self.view.backgroundColor = .red
         
     }
     
@@ -50,7 +50,7 @@ class CalcController: UIViewController {
     
     
     private func setupUI(){
-        self.view.backgroundColor = .red
+        
         self.view.addSubview(self.collectionView)
         
         NSLayoutConstraint.activate([
@@ -63,7 +63,7 @@ class CalcController: UIViewController {
     
 }
 
-extension CalcController: UICollectionViewDataSource {
+extension CalcController: UICollectionViewDelegate   {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.calcButtons.count
     }
@@ -82,13 +82,12 @@ extension CalcController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-    
-    
 }
 
-extension CalcController: UICollectionViewDelegate {
+extension CalcController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 3, height: view.frame.width / 2)
+       return CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
     }
+     
+    
 }

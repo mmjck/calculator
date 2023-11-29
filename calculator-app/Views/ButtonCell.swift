@@ -16,19 +16,30 @@ class ButtonCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 40, weight: .regular)
+        label.font = .systemFont(ofSize: 40, weight: .bold)
         label.text = "Error"
         
         return label
     }()
     
-    public func configure(with button: CalculatorButton) {
-        self.calculatorButton = button
-        self.titleLabel.text = button.title
-        self.backgroundColor = button.color
+    public func configure(with viewModel: CalculatorButton) {
+        print(viewModel.title)
+        self.calculatorButton = viewModel
+        self.titleLabel.text = viewModel.title
+        self.titleLabel.textColor = .white
+        self.backgroundColor = viewModel.color
         
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.addSubview(titleLabel)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
 }
